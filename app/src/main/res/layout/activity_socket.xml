@@ -26,7 +26,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="520dp"
 
         android:orientation="vertical"
          >
@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
 
 
-                android:textSize="30dp"
-                android:layout_marginStart="150dp"
+                android:textSize="20dp"
+                android:layout_marginStart="170dp"
 
                 android:layout_marginTop="20dp"
                 android:text="client"
@@ -50,6 +50,7 @@
 
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -129,8 +130,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
+
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="52dp"/>
         </LinearLayout>
 
@@ -155,8 +156,8 @@
                 android:text="습도알림을 알려주세여 "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginLeft="44dp"
+
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="52dp"/>
 
 

@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -260,14 +259,14 @@ public class SocketActivity extends AppCompatActivity {
                             System.out.println("substring1"+data.substring(13,15));
                             int tempInt = Integer.parseInt(data.substring(13, 15));
                             if (tempInt < lowTemp) {
-                                Toast.makeText(getApplication(), "화분을 따뜻한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplication(), "화분을 따뜻한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
                                 txtAlarmTemp.setText("화분을 따뜻한곳으로 옮겨주세요");
 
                             } else if (tempInt > highTemp) {
-                                Toast.makeText(getApplication(), "화분을 시원한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplication(), "화분을 시원한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
                                 txtAlarmTemp.setText("화분을 시원한곳으로 옮겨주세요");
                             } else {
-                                Toast.makeText(getApplication(), "딱 좋은 온도입니다", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplication(), "딱 좋은 온도입니다", Toast.LENGTH_SHORT).show();
                                 txtAlarmTemp.setText("딱 좋은 온도입니다");
                             }
                             count++;
@@ -278,13 +277,13 @@ public class SocketActivity extends AppCompatActivity {
 
                             int humInt = Integer.parseInt(data.substring(data.length()-5,data.length()-3));
                             if (humInt < lowHum) {
-                                Toast.makeText(getApplication(), "물을 좀 줘야해요ㅠㅠ", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplication(), "물을 좀 줘야해요ㅠㅠ", Toast.LENGTH_SHORT).show();
                                 txtAlarmHumidity.setText("물을 좀 줘야해요ㅠㅠ");
                             } else if (humInt > highHum) {
-                                Toast.makeText(getApplication(), "당분간 물을 주지마세요ㅠㅠ", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplication(), "당분간 물을 주지마세요ㅠㅠ", Toast.LENGTH_SHORT).show();
                                 txtAlarmHumidity.setText("당분간 물을 주지마세요ㅠㅠ");
                             } else
-                                Toast.makeText(getApplication(), "지금 딱 좋습니다", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplication(), "지금 딱 좋습니다", Toast.LENGTH_SHORT).show();
                             txtAlarmHumidity.setText("지금 딱 좋습니다");
                       }
 //
