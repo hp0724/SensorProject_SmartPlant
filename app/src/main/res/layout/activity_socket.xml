@@ -30,74 +30,159 @@
 
         android:orientation="vertical"
          >
-       <TextView
-        android:id="@+id/txtClient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="52dp"
-        android:text="client"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
 
-    <TextView
-        android:id="@+id/txt_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="52dp"
-        android:text="temp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtClient" />
+                android:textSize="30dp"
+                android:layout_marginStart="150dp"
+
+                android:layout_marginTop="20dp"
+                android:text="client"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:text="현재온도 :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="52dp"/>
+            <TextView
+                android:id="@+id/txt_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="52dp"
+
+
+                android:text="temp :"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:textStyle="bold"
+                android:text="현재습도 :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="52dp"/>
+            <TextView
+                android:id="@+id/txt_hum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+
+
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="52dp"
+                android:text="hum"
+
+                  />
+
+        </LinearLayout>
 
 
 
 
 
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="온도 알림 :"
+                android:textSize="20dp"
+                android:textStyle="bold"
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="52dp"/>
         <TextView
             android:id="@+id/txt_tempAlarm"
             android:text="온도알림을 알려주세여 "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="15dp"
             android:layout_marginStart="44dp"
             android:layout_marginLeft="44dp"
             android:layout_marginTop="52dp"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/txt_humAlarm"
-            android:text="습도알림을 알려주세여 "
+            android:text="습도 알림 :"
+            android:textSize="20dp"
+            android:textStyle="bold"
+
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="52dp"/>
+            <TextView
+                android:id="@+id/txt_humAlarm"
+                android:textSize="15dp"
+                android:text="습도알림을 알려주세여 "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="52dp"/>
+
+
+
+        </LinearLayout>
+
+
 
 
 
 </LinearLayout>
 
 
-
-
     <LinearLayout
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="170dp"
         android:background="@color/metroGreen"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/webcam"
             android:layout_width="122dp"
             android:layout_height="80dp"
             android:layout_marginLeft="140dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
 
             android:background="@drawable/rounded_button_background"
             android:text="실시간 영상"

@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-	public static String LOG_TAG = "BlueSignIn";
+	public static String LOG_TAG = "MainActivity";
 
 	String Cemail,Cpassword,Cname;
 	TextView name,email,password;

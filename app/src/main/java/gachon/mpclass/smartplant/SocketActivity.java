@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +28,7 @@ public class SocketActivity extends AppCompatActivity {
     int port;
     int tempInt;
     int humInt;
+    int count=0;
     String getTempHum="";
     Thread thread;
     Handler mHandler;
@@ -39,7 +39,7 @@ public class SocketActivity extends AppCompatActivity {
     TextView txtAutoTemp;
     TextView txtAutoHumidity;
     TextView txtAlarmTemp;
-    TextView txtAlarmHum;
+    TextView txtAlarmHumidity;
 
     Button butWeb;
 
@@ -74,8 +74,9 @@ public class SocketActivity extends AppCompatActivity {
         txtClient = (TextView)findViewById(R.id.txtClient);
         txtClient.setText(ip + " 접속중");
         txtTemp = (TextView)findViewById(R.id.txt_temp);
+        txtHumidity=(TextView)findViewById(R.id.txt_hum);
          txtAlarmTemp=(TextView)findViewById(R.id.txt_tempAlarm) ;
-        txtAlarmHum=(TextView)findViewById(R.id.txt_humAlarm) ;
+        txtAlarmHumidity=(TextView)findViewById(R.id.txt_humAlarm) ;
 
         butWeb=findViewById(R.id.webcam);
 
@@ -124,15 +125,7 @@ public class SocketActivity extends AppCompatActivity {
 
 // 실시간 영상 확인
 
-        butWeb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PackageManager pm=getPackageManager();
-                Intent intent= pm.getLaunchIntentForPackage("org.videolen.vlc");
-                startActivity(intent);
-            }
 
-        });
 
 
         mHandler = new Handler(Looper.getMainLooper());
@@ -258,42 +251,60 @@ public class SocketActivity extends AppCompatActivity {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        txtTemp.setText(data);
-                        Log.e("temp",data);
-                        String temp=data.substring(0,20);
-                        txtAlarmTemp.setText(temp);
-                        String hum=data.substring(20);
-                        txtAlarmHum.setText(hum);
+                         Log.e("temp",data);
 //여기 체크하기
-                        int tempInt = Integer.parseInt(data.substring(13,15));
-                       int humInt = Integer.parseInt(data.substring(data.length()-5,data.length()-3));
-//
+                        System.out.println("substring"+data);
+
+                        if(count==0) {
+                            txtTemp.setText(data);
+                            System.out.println("substring1"+data.substring(13,15));
+                            int tempInt = Integer.parseInt(data.substring(13, 15));
+                            if (tempInt < lowTemp) {
+                                Toast.makeText(getApplication(), "화분을 따뜻한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
+                                txtAlarmTemp.setText("화분을 따뜻한곳으로 옮겨주세요");
+
+                            } else if (tempInt > highTemp) {
+                                Toast.makeText(getApplication(), "화분을 시원한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
+                                txtAlarmTemp.setText("화분을 시원한곳으로 옮겨주세요");
+                            } else {
+                                Toast.makeText(getApplication(), "딱 좋은 온도입니다", Toast.LENGTH_SHORT).show();
+                                txtAlarmTemp.setText("딱 좋은 온도입니다");
+                            }
+                            count++;
+                        }
+                        else if(count==1){
+                            txtHumidity.setText(data);
+                            System.out.println("substring2"+data.substring(data.length()-5,data.length()-3));
+
+                            int humInt = Integer.parseInt(data.substring(data.length()-5,data.length()-3));
+                            if (humInt < lowHum) {
+                                Toast.makeText(getApplication(), "물을 좀 줘야해요ㅠㅠ", Toast.LENGTH_SHORT).show();
+                                txtAlarmHumidity.setText("물을 좀 줘야해요ㅠㅠ");
+                            } else if (humInt > highHum) {
+                                Toast.makeText(getApplication(), "당분간 물을 주지마세요ㅠㅠ", Toast.LENGTH_SHORT).show();
+                                txtAlarmHumidity.setText("당분간 물을 주지마세요ㅠㅠ");
+                            } else
+                                Toast.makeText(getApplication(), "지금 딱 좋습니다", Toast.LENGTH_SHORT).show();
+                            txtAlarmHumidity.setText("지금 딱 좋습니다");
+                      }
 //
 
 //                         txtTemp.setText("temp:"+getTemp+"hum:"+getHum);
 //
-                        if (tempInt < lowTemp) {
-                            Toast.makeText(getApplication(), "화분을 따뜻한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
-                            txtAlarmTemp.setText("화분을 따뜻한곳으로 옮겨주세요");
+                        butWeb.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
 
-                        } else if (tempInt > highTemp) {
-                            Toast.makeText(getApplication(), "화분을 시원한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
-                            txtAlarmTemp.setText("화분을 시원한곳으로 옮겨주세요");
-                        } else {
-                            Toast.makeText(getApplication(), "딱 좋은 온도입니다", Toast.LENGTH_SHORT).show();
-                            txtAlarmTemp.setText("딱 좋은 온도입니다");
-                        }
+                                Intent intent=  getPackageManager().getLaunchIntentForPackage("org.videolan.vlc");
+
+                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+
+                        });
 
 
-                        if (humInt < lowHum) {
-                            Toast.makeText(getApplication(), "물을 좀 줘야해요ㅠㅠ", Toast.LENGTH_SHORT).show();
-                            txtHumidity.setText("물을 좀 줘야해요ㅠㅠ");
-                        } else if (humInt > highHum) {
-                            Toast.makeText(getApplication(), "당분간 물을 주지마세요ㅠㅠ", Toast.LENGTH_SHORT).show();
-                            txtHumidity.setText("당분간 물을 주지마세요ㅠㅠ");
-                        } else
-                            Toast.makeText(getApplication(), "지금 딱 좋습니다", Toast.LENGTH_SHORT).show();
-                        txtHumidity.setText("지금 딱 좋습니다");
+
 
                     }
                 });
