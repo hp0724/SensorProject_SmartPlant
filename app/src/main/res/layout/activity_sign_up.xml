@@ -5,7 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@drawable/gradient_background_light_green"
-	tools:context="com.next.bluesignin.SignUpActivity">
+	tools:context="gachon.mpclass.smartplant.SignUpActivity">
 
 	<androidx.constraintlayout.widget.Guideline
 		android:id="@+id/glCenterHorizontal"
@@ -14,33 +14,19 @@
 		android:orientation="horizontal"
 		app:layout_constraintGuide_percent="0.5" />
 
+
 	<TextView
 		android:id="@+id/tvAlmostThere"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="32dp"
-		android:layout_marginBottom="8dp"
+		android:layout_marginStart="44dp"
+		android:layout_marginBottom="44dp"
 		android:clickable="true"
 		android:text="반갑습니다!"
 		android:textColor="@color/textColorPrimary"
 		android:textSize="30sp"
 		android:textStyle="bold"
-		app:layout_constraintBottom_toTopOf="@+id/tvExcited"
-		app:layout_constraintStart_toStartOf="parent" />
-
-	<TextView
-		android:id="@+id/tvExcited"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="32dp"
-		android:layout_marginEnd="32dp"
-		android:layout_marginBottom="64dp"
-		android:text="Plant Helpi의 회원이 되어주세요!"
-		android:textColor="@color/textColorPrimary"
-		android:textSize="30sp"
-		android:textStyle="bold"
 		app:layout_constraintBottom_toTopOf="@+id/tilUsername"
-		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent" />
 
 	<com.google.android.material.textfield.TextInputLayout
@@ -50,7 +36,7 @@
 		android:layout_marginStart="32dp"
 		android:layout_marginEnd="32dp"
 		android:layout_marginBottom="8dp"
-		android:theme="@style/TextInputLayoutTheme"
+		android:theme="@style/TextLabel"
 		app:layout_constraintBottom_toTopOf="@+id/tilEmail"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent">
@@ -71,7 +57,7 @@
 		android:layout_marginStart="32dp"
 		android:layout_marginEnd="32dp"
 		android:layout_marginBottom="8dp"
-		android:theme="@style/TextInputLayoutTheme"
+		android:theme="@style/TextLabel"
 		app:layout_constraintBottom_toTopOf="@+id/glCenterHorizontal"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +80,7 @@
 		android:layout_marginStart="32dp"
 		android:layout_marginTop="8dp"
 		android:layout_marginEnd="32dp"
-		android:theme="@style/TextInputLayoutTheme"
+		android:theme="@style/TextLabel"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +106,7 @@
 		android:background="@drawable/rounded_button_background"
 		android:text="Sign up"
 		android:textAllCaps="false"
-		android:textColor="@color/materialLightBlue700"
+		android:textColor="@color/textColorPrimary"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"

@@ -1,5 +1,6 @@
 package  gachon.mpclass.smartplant;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,7 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,10 +19,16 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 public class UploadActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,6 +42,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     SQLiteDatabase sqlDB,sqlDB2;
     MainActivity2.myDBHelper database;
     Uri uri;
+
     private static final String[] COUNTRIES = new String[] {
             "가울테리아", "개운죽", "윌마", "공작야자", "관엽베고니아",
             "관음죽", "구문초", "구즈마니아", "군자란", "글레코마",
@@ -95,7 +102,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         imageView.setOnClickListener(this);
         Intent intent = getIntent();
         email=intent.getStringExtra("email");   //이메일 받아왔음 데이터베이스에 이거 집어넣을거다
-        Button btn=(Button)findViewById(R.id.btn_upload);  //업로드 버튼
+        Button btn_upload=(Button)findViewById(R.id.btn_upload);  //업로드 버튼
         planttype=findViewById(R.id.search_plant);   //식물 종류
         plantname=findViewById(R.id.plant_name);    //화분 이름
         des=findViewById(R.id.des);                 //화분 설명
@@ -104,42 +111,44 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         //////////////데이터베이스 추가/////////////////////////
         myDBHelper=new myDBHelper(this);
 
-
+//        식물 종류 찾기
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, COUNTRIES);
         AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.search_plant);
         textView.setAdapter(adapter);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 sqlDB=database.getWritableDatabase();
-                Cursor cursor = sqlDB.rawQuery("SELECT TEMPARATURE,HUMID FROM plant where plantname=?;",new String[]{planttype.getText().toString()});
+                Cursor cursor = sqlDB.rawQuery("SELECT TEMPARATURE,HUMID FROM plant where PLANTNAME=?;",new String[]{planttype.getText().toString()});
                 int count=cursor.getCount();
                 cursor.moveToNext();
                 Ctemparature=cursor.getString(0); //온도 얻고
                 Chumid=cursor.getString(1);       //습도 얻고*/
                 String temparature,humid;
-                if(Ctemparature=="082001")
+                if(Ctemparature.equals("082001"))
                     temparature="10~15℃";
-                else if(Ctemparature=="082002")
+                else if(Ctemparature.equals("082002"))
                     temparature="16~20℃";
-                else if(Ctemparature=="082003")
+                else if(Ctemparature.equals("082003"))
                     temparature="21~25℃";
                 else
                     temparature="26~30℃";
 
-                if(Chumid=="053001")
+                if(Chumid.equals("053001"))
                     humid="항상 흙을 축축하게 유지해야함";
-                else if(Chumid=="053002")
+                else if(Chumid.equals("053002"))
                     humid="흙을 촉촉하게 유지해야함(물에 잠기지 않게 주의)";
-                else if(Chumid=="053003")
+                else if(Chumid.equals("053003"))
                     humid="토양 표면이 말랐을때 충분히 관수해야함";
-                else
+                 else
                     humid="화분 흙 대부분이 말랐을때 충분히 관수해야함";
 
                 sqlDB2=myDBHelper.getWritableDatabase();
-                String filepath=getRealPathFromURI(uri);
+//                이미지 경로 받고
+                String filepath=createCopyAndReturnRealPath(getApplicationContext(),uri);
+//                user_plant 에 넣기
                 sqlDB2.execSQL("INSERT INTO USER_PLANT VALUES('"+email+"','"+planttype.getText().toString()+"','"+filepath+"','"+plantname.getText().toString()+"','"+des.getText().toString()+"','"+temparature+"','"+humid+"')");
                 sqlDB.close();
                 sqlDB2.close();
@@ -156,41 +165,80 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private String getRealPathFromURI(Uri contentUri) {
-        /*String result;
-        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
-        if (cursor == null) { // Source is Dropbox or other similar local file path
-            result = contentURI.getPath();
-        } else {
-            cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-            result = cursor.getString(idx);
-            cursor.close();
-        }
-        return result;*/
-        /////위에꺼는 첫번쨰 방법.
-        
-        //아래것은 두번째방법
-        if (contentUri.getPath().startsWith("/storage")) {
-            return contentUri.getPath();
-        }
-        String id = DocumentsContract.getDocumentId(contentUri).split(":")[1];
-        String[] columns = { MediaStore.Files.FileColumns.DATA };
-        String selection = MediaStore.Files.FileColumns._ID + " = " + id;
-        Cursor cursor = getContentResolver().query(MediaStore.Files.getContentUri("external"), columns, selection, null, null);
+
+    ///// 첫번쨰 방법.
+//    private String getRealPathFromURI(Uri contentUri) {
+//         String result;
+//        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
+//        if (cursor == null) { // Source is Dropbox or other similar local file path
+//            result = contentUri.getPath();
+//        } else {
+//            cursor.moveToFirst();
+//            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+//            result = cursor.getString(idx);
+//            cursor.close();
+//        }
+//        return result;
+
+
+
+
+//        두번째방법
+//        private String getRealPathFromURI(Uri contentUri) {
+//            if (contentUri.getPath().startsWith("/storage")) {
+//                return contentUri.getPath();
+//            }
+//            String id = DocumentsContract.getDocumentId(contentUri).split(":")[1];
+//            String[] columns = {MediaStore.Files.FileColumns.DATA};
+//            String selection = MediaStore.Files.FileColumns._ID + " = " + id;
+//            Cursor cursor = getContentResolver().query(MediaStore.Files.getContentUri("external"), columns, selection, null, null);
+//            try {
+//                int columnIndex = cursor.getColumnIndex(columns[0]);
+//                if (cursor.moveToFirst()) {
+//                    return cursor.getString(columnIndex);
+//                }
+//            } finally {
+//                cursor.close();
+//            }
+//            return null;
+//        }
+
+
+
+
+
+//세번쨰 방법
+
+    @Nullable
+    public static String createCopyAndReturnRealPath(
+            @NonNull Context context, @NonNull Uri uri) {
+        final ContentResolver contentResolver = context.getContentResolver();
+        if (contentResolver == null)
+            return null;
+
+        // Create file path inside app's data dir
+        String filePath = context.getApplicationInfo().dataDir + File.separator
+                + System.currentTimeMillis();
+
+        File file = new File(filePath);
         try {
-            int columnIndex = cursor.getColumnIndex(columns[0]);
-            if (cursor.moveToFirst()) {
-                return cursor.getString(columnIndex);
-            }
+            InputStream inputStream = contentResolver.openInputStream(uri);
+            if (inputStream == null)
+                return null;
+
+            OutputStream outputStream = new FileOutputStream(file);
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = inputStream.read(buf)) > 0)
+                outputStream.write(buf, 0, len);
+
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException ignore) {
+            return null;
         }
-        finally {
-            cursor.close();
-        }
-        return null;
 
-
-
+        return file.getAbsolutePath();
     }
 
 

@@ -10,18 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
 
 import gachon.mpclass.smartplant.R;
 
 public class GalleryFragment extends Fragment {
 
     private gachon.mpclass.smartplant.ui.gallery.GalleryViewModel galleryViewModel;
+    private ViewModelStore viewModelStor=new ViewModelStore();
+    private ViewModelProvider.AndroidViewModelFactory viewModelFactory;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
-                ViewModelProviders.of(this).get(gachon.mpclass.smartplant.ui.gallery.GalleryViewModel.class);
+                new ViewModelProvider(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

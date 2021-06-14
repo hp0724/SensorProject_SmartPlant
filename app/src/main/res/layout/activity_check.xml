@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gradient_background_light_green"
-    tools:context="com.next.bluesignin.CheckActivity">
+    tools:context="gachon.mpclass.smartplant.CheckActivity">
 
     <LinearLayout
 
@@ -18,12 +18,9 @@
         tools:layout_editor_absoluteY="-354dp">
 
 
-        <ImageView
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            app:srcCompat="@drawable/icon"
-            tools:layout_editor_absoluteX="155dp"
-            tools:layout_editor_absoluteY="-7dp" />
+            android:layout_height="60dp" />
 
     </LinearLayout>
     <LinearLayout
