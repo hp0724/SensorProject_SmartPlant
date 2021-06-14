@@ -25,8 +25,6 @@ public class SocketActivity extends AppCompatActivity {
     SocketChannel clientSocket;
     String ip;
     int port;
-    int tempInt;
-    int humInt;
     int count=0;
     String getTempHum="";
     Thread thread;
@@ -35,8 +33,6 @@ public class SocketActivity extends AppCompatActivity {
     TextView txtClient;
     TextView txtTemp;
     TextView txtHumidity;
-    TextView txtAutoTemp;
-    TextView txtAutoHumidity;
     TextView txtAlarmTemp;
     TextView txtAlarmHumidity;
 
@@ -49,12 +45,10 @@ public class SocketActivity extends AppCompatActivity {
     String avgTmp;
     String avgHum;
 
-    int autotemp;
-    int autohumidity;
+
 
     SQLiteDatabase db;
 
-    int checkedposition;
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -121,61 +115,11 @@ public class SocketActivity extends AppCompatActivity {
 
 
 
-
-// 실시간 영상 확인
-
-
-
-
         mHandler = new Handler(Looper.getMainLooper());
         connect();
 
           Log.i("log",getTempHum);
                     txtAlarmTemp.setText(getTempHum);
-
-//           String getTemp=data.substring(14,15);
-//            String getHum=data.substring(29,30);
-//        Log.i("log","temp"+getTemp);
-//        Log.i("log","hum"+getHum);
-//
-//            int tempInt=Integer.parseInt(getTemp);
-//            int humInt=Integer.parseInt(getHum);
-////            txtHumidity=문자 자르기
-//
-////        비교해서 알림에 표시하기
-//
-//        if(tempInt<lowTemp){
-//            Toast.makeText(getApplication(),"화분을 따뜻한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
-//            txtAlarmTemp.setText("화분을 따뜻한곳으로 옮겨주세요");
-//
-//        }
-//        else if(tempInt>highTemp)
-//        {
-//            Toast.makeText(getApplication(),"화분을 시원한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
-//            txtAlarmTemp.setText("화분을 시원한곳으로 옮겨주세요");
-//        }
-//        else
-//        {
-//            Toast.makeText(getApplication(),"딱 좋은 온도입니다", Toast.LENGTH_SHORT).show();
-//            txtAlarmTemp.setText("딱 좋은 온도입니다");
-//        }
-//
-//
-//        if(humInt<lowHum){
-//            Toast.makeText(getApplication(),"물을 좀 줘야해요ㅠㅠ", Toast.LENGTH_SHORT).show();
-//            txtHumidity.setText("물을 좀 줘야해요ㅠㅠ");
-//        }
-//        else if(humInt>highHum)
-//        {
-//            Toast.makeText(getApplication(),"당분간 물을 주지마세요ㅠㅠ", Toast.LENGTH_SHORT).show();
-//            txtHumidity.setText("당분간 물을 주지마세요ㅠㅠ");
-//        }
-//
-//        else
-//            Toast.makeText(getApplication(),"지금 딱 좋습니다", Toast.LENGTH_SHORT).show();
-//            txtHumidity.setText("지금 딱 좋습니다");
-
-
 
     }
 
@@ -244,30 +188,24 @@ public class SocketActivity extends AppCompatActivity {
 
                 byteBuffer.flip();
                 Charset charset = Charset.forName("UTF-8");
-//                final String data = charset.decode(byteBuffer).toString();
-                  final String data=charset.decode(byteBuffer).toString();
+                   final String data=charset.decode(byteBuffer).toString();
 
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                          Log.e("temp",data);
-//여기 체크하기
-                        System.out.println("substring"+data);
 
                         if(count==0) {
                             txtTemp.setText(data);
                             System.out.println("substring1"+data.substring(13,15));
                             int tempInt = Integer.parseInt(data.substring(13, 15));
                             if (tempInt < lowTemp) {
-//                                Toast.makeText(getApplication(), "화분을 따뜻한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
-                                txtAlarmTemp.setText("화분을 따뜻한곳으로 옮겨주세요");
+                                 txtAlarmTemp.setText("화분을 따뜻한곳으로 옮겨주세요");
 
                             } else if (tempInt > highTemp) {
-//                                Toast.makeText(getApplication(), "화분을 시원한곳으로 옮겨주세요", Toast.LENGTH_SHORT).show();
-                                txtAlarmTemp.setText("화분을 시원한곳으로 옮겨주세요");
+                                 txtAlarmTemp.setText("화분을 시원한곳으로 옮겨주세요");
                             } else {
-//                                Toast.makeText(getApplication(), "딱 좋은 온도입니다", Toast.LENGTH_SHORT).show();
-                                txtAlarmTemp.setText("딱 좋은 온도입니다");
+                                 txtAlarmTemp.setText("딱 좋은 온도입니다");
                             }
                             count++;
                         }
@@ -277,19 +215,14 @@ public class SocketActivity extends AppCompatActivity {
 
                             int humInt = Integer.parseInt(data.substring(data.length()-5,data.length()-3));
                             if (humInt < lowHum) {
-//                                Toast.makeText(getApplication(), "물을 좀 줘야해요ㅠㅠ", Toast.LENGTH_SHORT).show();
-                                txtAlarmHumidity.setText("물을 좀 줘야해요ㅠㅠ");
+                                 txtAlarmHumidity.setText("물을 좀 줘야해요ㅠㅠ");
                             } else if (humInt > highHum) {
-//                                Toast.makeText(getApplication(), "당분간 물을 주지마세요ㅠㅠ", Toast.LENGTH_SHORT).show();
-                                txtAlarmHumidity.setText("당분간 물을 주지마세요ㅠㅠ");
+                                 txtAlarmHumidity.setText("당분간 물을 주지마세요ㅠㅠ");
                             } else
-//                                Toast.makeText(getApplication(), "지금 딱 좋습니다", Toast.LENGTH_SHORT).show();
-                            txtAlarmHumidity.setText("지금 딱 좋습니다");
+                             txtAlarmHumidity.setText("지금 딱 좋습니다");
                       }
-//
 
-//                         txtTemp.setText("temp:"+getTemp+"hum:"+getHum);
-//
+//        실시간 영상 확인을 위한 외부 어플 실행
                         butWeb.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

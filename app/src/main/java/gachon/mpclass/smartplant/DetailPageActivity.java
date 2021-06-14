@@ -68,9 +68,7 @@ public class DetailPageActivity extends AppCompatActivity {
             }
         });
 
-//        File file = new File(uri.getPath());
-//        Uri contentUri = getImageContentUri(this, file.getAbsolutePath());
-        t1.setText(Cplantname);
+          t1.setText(Cplantname);
         t2.setText(Cdes);
         t3.setText(Ctemparature);
         t4.setText(Chumid);

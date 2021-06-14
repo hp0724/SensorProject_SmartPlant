@@ -23,9 +23,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ItemV
     @Override
     public RecyclerAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-       // View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
-        //return new ItemViewHolder(view);
-        Context context = parent.getContext() ;
+         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
         View view = inflater.inflate(R.layout.item, parent, false) ;
@@ -58,11 +56,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ItemV
         listData.add(data);
     }
 
-   /// 새로 추가
 
-
-
-    /////  새로 추가
 
 
 
