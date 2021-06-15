@@ -205,7 +205,7 @@ public class SocketActivity extends AppCompatActivity {
                             } else if (tempInt > highTemp) {
                                  txtAlarmTemp.setText("온도가 높아요! 화분을 시원한곳으로 옮겨주세요");
                             } else {
-                                 txtAlarmTemp.setText("딱 좋은 온도입니다");
+                                 txtAlarmTemp.setText("딱 좋은 온도입니다.");
                             }
                             count++;
                         }
