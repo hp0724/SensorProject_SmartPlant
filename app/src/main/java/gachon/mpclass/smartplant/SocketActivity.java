@@ -99,18 +99,18 @@ public class SocketActivity extends AppCompatActivity {
 //        습도 관련
         if(avgHum.equals("항상 흙을 축축하게 유지해야함"))
         {
-            lowHum=113;highHum=134;
+            lowHum=63;highHum=84;
         }
         else if(avgHum.equals("흙을 촉촉하게 유지해야함(물에 잠기지 않게 주의)"))
         {
-            lowHum=103;highHum=110;
+            lowHum=53;highHum=60;
         }
         else if(avgHum.equals("토양 표면이 말랐을때 충분히 관수해야함"))
         {
-            lowHum=81;highHum=102;
+            lowHum=31;highHum=52;
         }
         else{
-            lowHum=64;highHum=80;
+            lowHum=14;highHum=30;
         }
 
 
@@ -200,10 +200,10 @@ public class SocketActivity extends AppCompatActivity {
                             System.out.println("substring1"+data.substring(13,15));
                             int tempInt = Integer.parseInt(data.substring(13, 15));
                             if (tempInt < lowTemp) {
-                                 txtAlarmTemp.setText("화분을 따뜻한곳으로 옮겨주세요");
+                                 txtAlarmTemp.setText("온도가 낮아요! 화분을 따뜻한곳으로 옮겨주세요");
 
                             } else if (tempInt > highTemp) {
-                                 txtAlarmTemp.setText("화분을 시원한곳으로 옮겨주세요");
+                                 txtAlarmTemp.setText("온도가 높아요! 화분을 시원한곳으로 옮겨주세요");
                             } else {
                                  txtAlarmTemp.setText("딱 좋은 온도입니다");
                             }
@@ -215,9 +215,9 @@ public class SocketActivity extends AppCompatActivity {
 
                             int humInt = Integer.parseInt(data.substring(data.length()-5,data.length()-3));
                             if (humInt < lowHum) {
-                                 txtAlarmHumidity.setText("물을 좀 줘야해요ㅠㅠ");
+                                 txtAlarmHumidity.setText("공중 습도가 낮아요!물을 좀 줘야해요ㅠㅠ");
                             } else if (humInt > highHum) {
-                                 txtAlarmHumidity.setText("당분간 물을 주지마세요ㅠㅠ");
+                                 txtAlarmHumidity.setText("공중 습도가 높아요!당분간 물을 주지마세요ㅠㅠ");
                             } else
                              txtAlarmHumidity.setText("지금 딱 좋습니다");
                       }

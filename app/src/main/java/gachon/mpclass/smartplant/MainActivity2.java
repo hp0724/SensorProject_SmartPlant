@@ -66,7 +66,7 @@ public class MainActivity2 extends AppCompatActivity //implements NavigationView
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {        //그 아래에 둥둥떠다니는 버튼
+            public void onClick(View view) {
                 Intent intent=new Intent(MainActivity2.this,UploadActivity.class);
                 intent.putExtra("email",email);   //이메일을 보내준다.
                 startActivity(intent);
@@ -239,6 +239,7 @@ public class MainActivity2 extends AppCompatActivity //implements NavigationView
             sqlDB.execSQL("INSERT INTO plant VALUES('종려죽','082002','053003')");
             sqlDB.execSQL("INSERT INTO plant VALUES('죽백나무','082002','053003')");
             sqlDB.execSQL("INSERT INTO plant VALUES('줄리아 페페로미아','082003','053003')");
+            sqlDB.execSQL("INSERT INTO plant VALUES('꽃기린','082001','053003')");
             sqlDB.execSQL("INSERT INTO plant VALUES('참쇠고비','082002','053002')");
             sqlDB.execSQL("INSERT INTO plant VALUES('치자나무','082003','053003')");
             sqlDB.execSQL("INSERT INTO plant VALUES('칼라데아 마코야나','082003','053003')");
