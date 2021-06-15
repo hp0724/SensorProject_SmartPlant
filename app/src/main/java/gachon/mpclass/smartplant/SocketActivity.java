@@ -215,9 +215,9 @@ public class SocketActivity extends AppCompatActivity {
 
                             int humInt = Integer.parseInt(data.substring(data.length()-5,data.length()-3));
                             if (humInt < lowHum) {
-                                 txtAlarmHumidity.setText("공중 습도가 낮아요!물을 좀 줘야해요ㅠㅠ");
+                                 txtAlarmHumidity.setText("공중 습도가 낮아요! 공중 분무가 시급합니다ㅠㅠ");
                             } else if (humInt > highHum) {
-                                 txtAlarmHumidity.setText("공중 습도가 높아요!당분간 물을 주지마세요ㅠㅠ");
+                                 txtAlarmHumidity.setText("공중 습도가 높아요! ㅠㅠ");
                             } else
                              txtAlarmHumidity.setText("지금 딱 좋습니다");
                       }
