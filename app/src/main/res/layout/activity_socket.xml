@@ -11,7 +11,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:background="@color/metroGreen"
+        android:background="@color/main_color"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="-354dp">
@@ -44,6 +44,7 @@
 
                 android:layout_marginTop="20dp"
                 android:text="client"
+                android:fontFamily="@font/esamanru_medium"
                 />
 
         </LinearLayout>
@@ -59,7 +60,7 @@
                 android:text="현재온도 :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:fontFamily="@font/esamanru_medium"
                 android:textSize="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="52dp"/>
@@ -73,6 +74,7 @@
 
 
                 android:text="temp :"
+                android:fontFamily="@font/esamanru_light"
                 />
         </LinearLayout>
 
@@ -82,8 +84,8 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                android:textStyle="bold"
                 android:text="현재습도 :"
+                android:fontFamily="@font/esamanru_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -100,6 +102,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="52dp"
                 android:text="hum"
+                android:fontFamily="@font/esamanru_light"
 
                   />
 
@@ -117,7 +120,7 @@
             <TextView
                 android:text="온도 알림 :"
                 android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/esamanru_medium"
 
 
                 android:layout_width="wrap_content"
@@ -127,6 +130,7 @@
         <TextView
             android:id="@+id/txt_tempAlarm"
             android:text="온도알림을 알려주세여 "
+            android:fontFamily="@font/esamanru_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -143,7 +147,7 @@
         <TextView
             android:text="습도 알림 :"
             android:textSize="20dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/esamanru_medium"
 
 
             android:layout_width="wrap_content"
@@ -154,6 +158,7 @@
                 android:id="@+id/txt_humAlarm"
                 android:textSize="15dp"
                 android:text="습도알림을 알려주세여 "
+                android:fontFamily="@font/esamanru_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -175,7 +180,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:background="@color/metroGreen"
+        android:background="@color/main_color"
         android:orientation="vertical">
 
         <Button
@@ -186,6 +191,7 @@
             android:layout_marginTop="40dp"
 
             android:background="@drawable/rounded_button_background"
+            android:fontFamily="@font/esamanru_medium"
             android:text="실시간 영상"
             android:textAllCaps="false"
             android:textColor="@color/textColorPrimary" />

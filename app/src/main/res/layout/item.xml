@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="TITLE"
+            android:fontFamily="@font/esamanru_light"
             android:textSize="15sp"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
@@ -30,6 +31,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="content"
+            android:fontFamily="@font/esamanru_light"
             android:textSize="13sp"
             android:textColor="@android:color/darker_gray"/>
     </LinearLayout>

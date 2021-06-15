@@ -11,7 +11,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:background="@color/metroGreen"
+        android:background="@color/main_color"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="-354dp">
@@ -44,7 +44,7 @@
 
         android:layout_width="match_parent"
          android:layout_height="match_parent"
-        android:background="@color/metroGreen"
+        android:background="#8deb95"
         android:orientation="vertical"
          >
 
@@ -57,6 +57,7 @@
 
             android:background="@drawable/rounded_button_background"
             android:text="화분 등록"
+            android:fontFamily="@font/esamanru_medium"
             android:textAllCaps="false"
             android:textColor="@color/textColorPrimary" />
 

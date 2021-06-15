@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@drawable/gradient_background_light_green"
+	android:background="@drawable/background_main"
 	tools:context="gachon.mpclass.smartplant.MainActivity">
 
 	<TextView
@@ -12,8 +12,9 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="160dp"
+		android:fontFamily="@font/esamanru_medium"
 		android:text="식물 키우기 "
-		android:textColor="@color/white"
+		android:textColor="@color/text_green"
 		android:textSize="50dp"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.496"
@@ -28,13 +29,12 @@
 		app:layout_constraintGuide_percent="0.5" />
 
 
-
 	<com.google.android.material.textfield.TextInputLayout
 		android:id="@+id/tilEmail"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="32dp"
-		android:layout_marginEnd="32dp"
+		android:layout_marginStart="40dp"
+		android:layout_marginEnd="40dp"
 		android:layout_marginBottom="8dp"
 		android:theme="@style/TextLabel"
 		app:layout_constraintBottom_toTopOf="@+id/glCenterHorizontal"
@@ -45,6 +45,7 @@
 			android:id="@+id/etEmail"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:fontFamily="@font/esamanru_light"
 			android:hint="Email"
 			android:inputType="textEmailAddress"
 			android:maxLines="1"
@@ -55,9 +56,9 @@
 		android:id="@+id/tilPassword"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="32dp"
+		android:layout_marginStart="40dp"
 		android:layout_marginTop="8dp"
-		android:layout_marginEnd="32dp"
+		android:layout_marginEnd="40dp"
 		android:theme="@style/TextLabel"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
@@ -68,11 +69,11 @@
 			android:id="@+id/etPassword"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:fontFamily="@font/esamanru_light"
 			android:hint="Password"
 			android:inputType="textPassword"
 			android:maxLines="1"
-			android:textColorHint="@color/textColorPrimary"
-			/>
+			android:textColorHint="@color/textColorPrimary" />
 	</com.google.android.material.textfield.TextInputLayout>
 
 	<TextView
@@ -81,6 +82,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
 		android:clickable="true"
+		android:fontFamily="@font/esamanru_light"
 		android:text="forgot Password?"
 		android:textColor="@color/textColorSecondary"
 		android:textSize="14sp"
@@ -97,6 +99,7 @@
 		android:layout_marginTop="64dp"
 		android:layout_marginEnd="32dp"
 		android:background="@drawable/rounded_button_background"
+		android:fontFamily="@font/esamanru_medium"
 		android:text="Sign in"
 		android:textAllCaps="false"
 		android:textColor="@color/textColorPrimary"
@@ -110,8 +113,9 @@
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
 		android:layout_marginTop="16dp"
+		android:fontFamily="@font/esamanru_light"
 		android:text="아직 회원이 아니신가요?"
-		android:textColor="@color/textColorSecondary"
+		android:textColor="@color/text_lightgreen"
 		android:textSize="14sp"
 		app:layout_constraintEnd_toStartOf="@+id/tvSignUp"
 		app:layout_constraintHorizontal_bias="0.5"
@@ -125,8 +129,9 @@
 		android:layout_height="wrap_content"
 		android:layout_marginStart="8dp"
 		android:layout_marginEnd="8dp"
+		android:fontFamily="@font/esamanru_light"
 		android:text="Sign up."
-		android:textColor="@color/textColorPrimary"
+		android:textColor="@color/text_lightgreen"
 		android:textStyle="bold"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.5"

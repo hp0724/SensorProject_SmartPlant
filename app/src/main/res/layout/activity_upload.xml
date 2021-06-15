@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background_light_green"
+    android:background="@drawable/background_main"
     tools:context=".UploadActivity">
     <LinearLayout
 
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:background="@color/metroGreen"
+        android:background="#3F9F47"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="-354dp">
@@ -28,17 +28,15 @@
     </LinearLayout>
 
 
-
-
     <ImageButton
         android:id="@+id/imagebtn"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/upload"
-        android:background="@drawable/background_rounding"
-        />
+        android:backgroundTint="#FFFFFF"
+
+        android:src="@drawable/upload" />
 
     <AutoCompleteTextView
         android:id="@+id/search_plant"
@@ -50,6 +48,7 @@
         android:completionThreshold="1"
         android:gravity="center"
         android:hint="식물의 종류를 입력하세요"
+        android:fontFamily="@font/esamanru_light"
         android:paddingLeft="35dp"
         android:paddingTop="30dp"
         android:textColor="@color/black"
@@ -63,23 +62,26 @@
         android:layout_width="wrap_content"
         android:layout_height="105dp"
         android:layout_marginLeft="120dp"
+        android:fontFamily="@font/esamanru_light"
         android:hint="화분의 이름을 입력하세요"
         android:paddingTop="30dp"
-        android:theme="@style/TextLabel" />
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/des"
         android:layout_width="wrap_content"
         android:layout_height="99dp"
         android:layout_marginLeft="110dp"
+        android:fontFamily="@font/esamanru_light"
         android:hint="화분에 대한 설명을 입력하세요"
         android:paddingTop="30dp"
-        android:theme="@style/TextLabel" />
+        android:textColor="@color/black"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:background="@color/metroGreen"
+        android:background="@color/main_color"
         android:orientation="horizontal">
 
         <Button
@@ -92,6 +94,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_button_background"
             android:text="등록"
+            android:fontFamily="@font/esamanru_medium"
             android:textAllCaps="false"
             android:textColor="@color/textColorSecondary"
 
